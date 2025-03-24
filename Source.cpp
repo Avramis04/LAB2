@@ -1,6 +1,6 @@
 /** \file Source.cpp
-* \brief drawing shapes program.
-* \details this program will draw shapes based on the user input.
+* \brief Drawing shapes program.
+* \details This program will draw shapes based on the user input.
 * \author AVRAMIS KONTOU
 * \version 0.1
 * \date 24 /3/2025
@@ -9,10 +9,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <cassert>
 
 using namespace std;
 
-// Add the functions prototypes before the main program 
+// Function prototypes
 void drawHorizontalLine(int length, char ch);
 void drawVerticalLine(int height, char ch);
 void drawSquare(int size, char ch);
@@ -20,8 +21,9 @@ void drawSquareFilled(int size, char ch);
 void drawRectangle(int height, int length, char ch);
 void drawRectangleFilled(int height, int length, char ch);
 void drawShapes(int numShapes);
+
 /**
-* Main function providing a menu for user to draw different shapes.
+* Main function giving a menu for user to draw different shapes.
 * @return 0 upon successful execution.
 */
 int main() {
@@ -36,7 +38,7 @@ int main() {
         cout << "4) Draw a rectangle" << endl;
         cout << "5) Draw random shapes" << endl;
         cout << "6) Quit" << endl;
-        cout << "choose your Option: ";
+        cout << "Choose your option: ";
         cin >> option;
 
         int size, height, length;
@@ -75,37 +77,44 @@ int main() {
     } while (option != 6);
     return 0;
 }
+
 /**
 * Draws a horizontal line.
-* @param length The number of characters to print.
+* @param length The number of characters to display.
 * @param ch The character to use for drawing.
 */
 void drawHorizontalLine(int length, char ch) {
+    assert(length > 0); // Pre condition 
     for (int i = 0; i < length; i++)
         cout << ch;
     cout << endl;
 }
+
 /**
 * Draws a vertical line.
-* @param height The number of lines to print.
+* @param height The number of lines to display .
 * @param ch The character to use for drawing.
 */
 void drawVerticalLine(int height, char ch) {
+    assert(height > 0); // Pre condition
     for (int i = 0; i < height; i++)
         cout << ch << endl;
 }
+
 /**
-* Draws an unfilled square.
+* Draws an square.
 * @param size The width and height of the square.
 * @param ch The character to use for drawing.
 */
 void drawSquare(int size, char ch) {
+    assert(size > 0); // Pre condition
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++)
             cout << ch;
         cout << endl;
     }
 }
+
 /**
 * Draws a filled square.
 * @param size The width and height of the square.
@@ -114,19 +123,22 @@ void drawSquare(int size, char ch) {
 void drawSquareFilled(int size, char ch) {
     drawSquare(size, ch);
 }
+
 /**
-* Draws an unfilled rectangle.
+* Draws an rectangle.
 * @param height The number of rows.
 * @param length The number of columns.
 * @param ch The character to use for drawing.
 */
 void drawRectangle(int height, int length, char ch) {
+    assert(height > 0 && length > 0); // Pre condition
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < length; j++)
             cout << ch;
         cout << endl;
     }
 }
+
 /**
 * Draws a filled rectangle.
 * @param height The number of rows.
@@ -136,12 +148,14 @@ void drawRectangle(int height, int length, char ch) {
 void drawRectangleFilled(int height, int length, char ch) {
     drawRectangle(height, length, ch);
 }
+
 /**
 * Generates and draws a given number of random shapes.
 * @param numShapes The number of shapes to generate.
 */
 void drawShapes(int numShapes) {
     const int MAX_SHAPES = 10;
+    assert(numShapes > 0); //Pre condition
     numShapes = (numShapes > MAX_SHAPES) ? MAX_SHAPES : numShapes;
 
     for (int i = 0; i < numShapes; i++) {
